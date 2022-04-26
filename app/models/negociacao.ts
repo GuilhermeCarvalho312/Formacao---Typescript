@@ -2,8 +2,6 @@ export class Negociacao {
   private _data;
   private _quantidade;
   private _valor;
-  private _segundos;
-  private _teste;
 
   constructor(data, quantidade, valor) {
     this._data = data;
