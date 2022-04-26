@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "outDir": "dist/js", // Onde os arquivos TS compilados serão salvos transformados em JS
+    "target": "ES6",  //Versão do javascritp
+    "noEmitOnError": true // Não vai gerar um arquivo JS enquanto tiver erro no TS
+  },
+  "include": ["app/**/*"] // ** = toda pasta filha, * = todo arquivo TS
+}
