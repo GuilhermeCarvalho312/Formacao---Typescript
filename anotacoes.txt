@@ -1,0 +1,24 @@
+AULA - 1: Por que usar typescript?
+* Introdução ao projeto e sua estrutura
+* Um pouco sobre módulos do ECMASCRIPT
+* Modelagem de uma Negociação em Javascript
+* Buracos em nossa modelagem por limitações da linguagem Javascript
+
+AULA - 2: Typescript e compilador
+* Download do TypeScript
+* Configuração do compilador e papel do tsconfig.json
+* Integração com scripts do Node.js
+* Modificadores de acesso private e public
+* Benefícios iniciais da linguagem TypeScript
+
+AULA - 3: Benefícios da tipagem estática
+* O tipo implícito any
+* Benefícios da tipagem estática
+* Mais configurações do compilador tsc
+* Retorno de método explícito
+* Conversão de valores da interface do usuário
+
+Quando o vscode der o autocomplete de uma classe é necessário colocar .js se não o código não funciona. Isso se você não estiver codando em um framework(Angular, vue ou react) esses frameworks no sistema de build colocam automaticmanete
+.value retorna sempre uma string
+sempre tipar os retornos dos métodos criados
+começar um projeto do zero =>"noImplicitAny": true para verificação do TS de tipagem
