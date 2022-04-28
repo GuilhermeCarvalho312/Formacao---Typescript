@@ -8,7 +8,7 @@ export class NegociacaoController {
     adiciona() {
         const negociacao = this.criaNegociacao();
         console.log('negociacao', negociacao);
-        this.limparformulário();
+        this.limparFormulário();
     }
     criaNegociacao() {
         const exp = /-/g; // Expressão regular sempre é iniciada com //, encontra todos os '-' quando colocamos o 'g' ao lado
@@ -17,7 +17,7 @@ export class NegociacaoController {
         const valor = parseFloat(this.inputValor.value);
         return new Negociacao(date, quantidade, valor);
     }
-    limparformulário() {
+    limparFormulário() {
         this.inputData.value = '';
         this.inputQuantidade.value = '';
         this.inputValor.value = '';
