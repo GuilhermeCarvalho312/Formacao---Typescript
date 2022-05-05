@@ -8,7 +8,7 @@ export class Negociacoes {
     this.negociacoes.push(negociacao);
   }
 
-  lista(): Array<Negociacao> {
+  lista(): ReadonlyArray<Negociacao> { // Readonly(somente leitura) não permite modificar o array de retorno da função
     return this.negociacoes;
   }
 }
