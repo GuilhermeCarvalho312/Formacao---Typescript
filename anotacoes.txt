@@ -22,3 +22,7 @@ Quando o vscode der o autocomplete de uma classe é necessário colocar .js se n
 .value retorna sempre uma string
 sempre tipar os retornos dos métodos criados
 começar um projeto do zero =>"noImplicitAny": true para verificação do TS de tipagem
+
+AULA - 4: Avançando na modelagem do domínio:
+any[] significa que é um array do tipo any, pode entrar qualquer coisa dentro do array
+<T> o T maiúsculo no meio significa TYPE
