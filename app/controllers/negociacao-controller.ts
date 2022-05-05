@@ -5,7 +5,7 @@ export class NegociacaoController {
   private inputData: HTMLInputElement;
   private inputQuantidade: HTMLInputElement;
   private inputValor: HTMLInputElement;
-  private negociacoes: Negociacoes;
+  private negociacoes: Negociacoes = new Negociacoes(); // Nesse caso é necessário inicializar a variável
 
   constructor() {
     this.inputData = document.querySelector("#data");
