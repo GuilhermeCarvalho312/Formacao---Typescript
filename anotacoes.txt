@@ -24,5 +24,22 @@ sempre tipar os retornos dos métodos criados
 começar um projeto do zero =>"noImplicitAny": true para verificação do TS de tipagem
 
 AULA - 4: Avançando na modelagem do domínio:
+* Modelagem da classe Negociacoes
+* Utilização de Generics
+* Revisão sobre encapsulamento
+* Questões de mutabilidade e como solucioná-la
+* O tipo ReadonlyArray
+* Adição de negociações em nossa lista
+
 any[] significa que é um array do tipo any, pode entrar qualquer coisa dentro do array
 <T> o T maiúsculo no meio significa TYPE
+Readonly é uma maneira de travar a mdoficação do array
+
+AULA - 5: Simplificando nosso código:
+* Nova maneira de declaração de array com generics
+* O tipo ReadonlyArray
+* O modificador readonly
+* Getters vs propriedades públicas em modo de leitura
+* Programação defensiva
+
+Podemos declarar as propriedades das classes no próprio construtor colocando o atributo private na frente
