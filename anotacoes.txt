@@ -43,3 +43,13 @@ AULA - 5: Simplificando nosso código:
 * Programação defensiva
 
 Podemos declarar as propriedades das classes no próprio construtor colocando o atributo private na frente
+
+
+CURSO - 2
+AULA - 1: Elaborando uma solução do view
+* Inspiração no React para criação de templates declarativos e dinâmicos
+* Manipulação declarativa do DOM através de template
+* Template dinâmico
+* Formatação de datas usando Intl
+
+Para criar elementos HTML dinamicamente podemos usar a propriedade innerHTML que recebe uma string e é convertida para elementos do DOM
