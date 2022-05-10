@@ -1,12 +1,7 @@
 import { Negociacoes } from "../models/negociacoes.js";
+import { View } from "./view.js";
 
-export class NegociacoesView {
-  private element: HTMLElement;
-
-  constructor(selector: string) {
-    this.element = document.querySelector(selector);
-  }
-
+export class NegociacoesView extends View<Negociacoes> {
   template(model: Negociacoes): string {
     //template string permite quebrar a linha sem ficar concatenando
     return `
@@ -19,7 +14,8 @@ export class NegociacoesView {
                 </tr>
             </thead>
             <tbody>
-                ${model.lista().map((negociacao) => { //${} => Interpolação, processa comandos javascript
+                ${model.lista().map((negociacao) => {
+                  //${} => Interpolação, processa comandos javascript
                   return `
                         <tr>
                             <td>${new Intl.DateTimeFormat().format(
@@ -33,11 +29,5 @@ export class NegociacoesView {
             </tbody>
         </table>
         `;
-  }
-
-  update(model: Negociacoes): void {
-    const template = this.template(model);
-    console.log("template: ", template);
-    this.element.innerHTML = template;
   }
 }
