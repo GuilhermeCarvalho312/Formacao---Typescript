@@ -6,7 +6,9 @@ export class NegociacaoController {
     constructor() {
         this.negociacoes = new Negociacoes(); // Nesse caso é necessário inicializar a variável
         this.negociacoesView = new NegociacoesView("#negociacoesView"); //passando a ID do HTML
-        this.mensagemView = new mensagemView('#mensagemView');
+        this.mensagemView = new mensagemView("#mensagemView");
+        this.SABADO = 6;
+        this.DOMINGO = 0;
         this.inputData = document.querySelector("#data");
         this.inputQuantidade = document.querySelector("#quantidade");
         this.inputValor = document.querySelector("#valor");
@@ -14,11 +16,16 @@ export class NegociacaoController {
     }
     adiciona() {
         const negociacao = this.criaNegociacao();
-        //console.log("negociacao", negociacao);
+        if (!this.isBussinessDay(negociacao.data)) {
+            this.mensagemView.update("Apenas negociações em dias úteis são aceitas!");
+            return;
+        }
         this.negociacoes.addNegotiation(negociacao);
-        this.negociacoesView.update(this.negociacoes);
-        this.mensagemView.update('Negociação adicionada com sucesso!');
         this.limparFormulário();
+        this.updateView();
+    }
+    isBussinessDay(data) {
+        return data.getDay() > this.DOMINGO && data.getDay() < this.SABADO;
     }
     criaNegociacao() {
         const exp = /-/g; // Expressão regular sempre é iniciada com //, encontra todos os '-' quando colocamos o 'g' ao lado
@@ -32,5 +39,9 @@ export class NegociacaoController {
         this.inputQuantidade.value = "";
         this.inputValor.value = "";
         this.inputData.focus();
+    }
+    updateView() {
+        this.negociacoesView.update(this.negociacoes);
+        this.mensagemView.update("Negociação adicionada com sucesso!");
     }
 }

@@ -7,10 +7,10 @@ export abstract class View<T> {
     this.element = document.querySelector(selector);
   }
 
-  update(model: T): void {
+  public update(model: T): void {
     const template = this.template(model);
     this.element.innerHTML = template;
   }
 
-  abstract template(_model: T): string; //Assim a definição do método fica para a classe filha. E se não for definido o typescript mostrará o erro
+  protected abstract template(_model: T): string; //Assim a definição do método fica para a classe filha. E se não for definido o typescript mostrará o erro
 }

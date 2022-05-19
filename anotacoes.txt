@@ -62,3 +62,8 @@ AULA - 2: Herança e reaproveitamento do código
 
 extends é pra herdar outra classe
 protected protege a propriedade da classe pai, porém as classes filhas têm acesso. Diferente de private que ninguém pode nem ler
+
+AULA - 3: Visibilidade de métodos e Enumeration:
+
+
+Constantes são escritos em letras maiúsculas

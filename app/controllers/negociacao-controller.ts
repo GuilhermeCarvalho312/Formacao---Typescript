@@ -9,7 +9,9 @@ export class NegociacaoController {
   private inputValor: HTMLInputElement;
   private negociacoes: Negociacoes = new Negociacoes(); // Nesse caso é necessário inicializar a variável
   private negociacoesView = new NegociacoesView("#negociacoesView"); //passando a ID do HTML
-  private mensagemView = new mensagemView('#mensagemView');
+  private mensagemView = new mensagemView("#mensagemView");
+  private readonly SABADO = 6;
+  private readonly DOMINGO = 0;
 
   constructor() {
     this.inputData = document.querySelector("#data");
@@ -18,16 +20,22 @@ export class NegociacaoController {
     this.negociacoesView.update(this.negociacoes);
   }
 
-  adiciona(): void {
+  public adiciona(): void {
     const negociacao = this.criaNegociacao();
-    //console.log("negociacao", negociacao);
-    this.negociacoes.addNegotiation(negociacao);
-    this.negociacoesView.update(this.negociacoes);
-    this.mensagemView.update('Negociação adicionada com sucesso!')
-    this.limparFormulário();
+    if (!this.isBussinessDay(negociacao.data)) {
+      this.mensagemView.update("Apenas negociações em dias úteis são aceitas!");
+      return;
+    }
+      this.negociacoes.addNegotiation(negociacao);
+      this.limparFormulário();
+      this.updateView();
   }
 
-  criaNegociacao(): Negociacao {
+  private isBussinessDay(data: Date) {
+    return data.getDay() > this.DOMINGO && data.getDay() < this.SABADO;
+  }
+
+  private criaNegociacao(): Negociacao {
     const exp = /-/g; // Expressão regular sempre é iniciada com //, encontra todos os '-' quando colocamos o 'g' ao lado
     const date = new Date(this.inputData.value.replace(exp, ","));
     const quantidade = parseInt(this.inputQuantidade.value);
@@ -35,10 +43,15 @@ export class NegociacaoController {
     return new Negociacao(date, quantidade, valor);
   }
 
-  limparFormulário(): void {
+  private limparFormulário(): void {
     this.inputData.value = "";
     this.inputQuantidade.value = "";
     this.inputValor.value = "";
     this.inputData.focus();
+  }
+
+  private updateView(): void {
+    this.negociacoesView.update(this.negociacoes);
+    this.mensagemView.update("Negociação adicionada com sucesso!");
   }
 }
