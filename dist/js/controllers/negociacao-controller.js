@@ -1,3 +1,4 @@
+import { DaysOfTheWeek } from "../enums/days-of-the-week.js";
 import { Negociacao } from "../models/negociacao.js";
 import { Negociacoes } from "../models/negociacoes.js";
 import { mensagemView } from "../views/mensagem-view.js";
@@ -7,8 +8,6 @@ export class NegociacaoController {
         this.negociacoes = new Negociacoes(); // Nesse caso é necessário inicializar a variável
         this.negociacoesView = new NegociacoesView("#negociacoesView"); //passando a ID do HTML
         this.mensagemView = new mensagemView("#mensagemView");
-        this.SABADO = 6;
-        this.DOMINGO = 0;
         this.inputData = document.querySelector("#data");
         this.inputQuantidade = document.querySelector("#quantidade");
         this.inputValor = document.querySelector("#valor");
@@ -25,7 +24,7 @@ export class NegociacaoController {
         this.updateView();
     }
     isBussinessDay(data) {
-        return data.getDay() > this.DOMINGO && data.getDay() < this.SABADO;
+        return data.getDay() > DaysOfTheWeek.DOMINGO && data.getDay() < DaysOfTheWeek.SABADO;
     }
     criaNegociacao() {
         const exp = /-/g; // Expressão regular sempre é iniciada com //, encontra todos os '-' quando colocamos o 'g' ao lado

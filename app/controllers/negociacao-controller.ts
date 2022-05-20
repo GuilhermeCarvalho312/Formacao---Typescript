@@ -1,3 +1,4 @@
+import { DaysOfTheWeek } from "../enums/days-of-the-week.js";
 import { Negociacao } from "../models/negociacao.js";
 import { Negociacoes } from "../models/negociacoes.js";
 import { mensagemView } from "../views/mensagem-view.js";
@@ -10,8 +11,6 @@ export class NegociacaoController {
   private negociacoes: Negociacoes = new Negociacoes(); // Nesse caso é necessário inicializar a variável
   private negociacoesView = new NegociacoesView("#negociacoesView"); //passando a ID do HTML
   private mensagemView = new mensagemView("#mensagemView");
-  private readonly SABADO = 6;
-  private readonly DOMINGO = 0;
 
   constructor() {
     this.inputData = document.querySelector("#data");
@@ -31,8 +30,8 @@ export class NegociacaoController {
       this.updateView();
   }
 
-  private isBussinessDay(data: Date) {
-    return data.getDay() > this.DOMINGO && data.getDay() < this.SABADO;
+  private isBussinessDay(data: Date):boolean {
+    return data.getDay() > DaysOfTheWeek.DOMINGO && data.getDay() < DaysOfTheWeek.SABADO;
   }
 
   private criaNegociacao(): Negociacao {
