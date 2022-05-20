@@ -2,7 +2,7 @@ import { Negociacoes } from "../models/negociacoes.js";
 import { View } from "./view.js";
 
 export class NegociacoesView extends View<Negociacoes> {
-  template(model: Negociacoes): string {
+  protected template(model: Negociacoes): string {
     //template string permite quebrar a linha sem ficar concatenando
     return `
         <table class="table table-hover table-bordered">
@@ -14,20 +14,25 @@ export class NegociacoesView extends View<Negociacoes> {
                 </tr>
             </thead>
             <tbody>
-                ${model.lista().map((negociacao) => {
-                  //${} => Interpolação, processa comandos javascript
-                  return `
+                ${model
+                  .lista()
+                  .map((negociacao) => {
+                    //${} => Interpolação, processa comandos javascript
+                    return `
                         <tr>
-                            <td>${new Intl.DateTimeFormat().format(
-                              negociacao.data
-                            )}</td>
+                            <td>${this.dateFormater(negociacao.data)}</td>
                             <td>${negociacao.quantidade}</td>
                             <td>${negociacao.valor}</td>
                         </tr>
                         `;
-                })}
+                  })
+                  .join("")}
             </tbody>
         </table>
         `;
+  }
+
+  private dateFormater(data: Date): String {
+    return new Intl.DateTimeFormat().format(data);
   }
 }

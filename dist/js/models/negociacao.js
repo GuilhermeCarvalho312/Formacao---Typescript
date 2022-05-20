@@ -1,6 +1,5 @@
 export class Negociacao {
-    constructor(_data, // Todo mundo pode ler, porém não pode alterar
-    quantidade, valor) {
+    constructor(_data, quantidade, valor) {
         this._data = _data;
         this.quantidade = quantidade;
         this.valor = valor;
@@ -9,7 +8,14 @@ export class Negociacao {
         return this.quantidade * this.valor;
     }
     get data() {
-        const dataCopy = new Date(this._data.getTime()); // Programação defensiva, nova refeência do atributo _data
+        const dataCopy = new Date(this._data.getTime());
         return dataCopy;
+    }
+    static createFrom(dataString, quantidadeString, valorString) {
+        const exp = /-/g;
+        const date = new Date(dataString.replace(exp, ","));
+        const quantidade = parseInt(quantidadeString);
+        const valor = parseFloat(valorString);
+        return new Negociacao(date, quantidade, valor);
     }
 }

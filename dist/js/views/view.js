@@ -1,9 +1,22 @@
 export class View {
-    constructor(selector) {
-        this.element = document.querySelector(selector);
+    constructor(selector, escape) {
+        this.escape = false;
+        const element = document.querySelector(selector);
+        if (element) {
+            this.element = element;
+        }
+        else {
+            throw Error(`Selector ${selector} not found`);
+        }
+        if (escape) {
+            this.escape = escape;
+        }
     }
     update(model) {
-        const template = this.template(model);
+        let template = this.template(model);
+        if (this.escape) {
+            template = template.replace(/<script>[\s\S]*?<\/script/, "");
+        }
         this.element.innerHTML = template;
     }
 }

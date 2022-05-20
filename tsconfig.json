@@ -3,7 +3,9 @@
     "outDir": "dist/js", // Onde os arquivos TS compilados serão salvos transformados em JS
     "target": "ES6",  //Versão do javascritp
     "noEmitOnError": true, // Não vai gerar um arquivo JS enquanto tiver erro no TS
-    "noImplicitAny": true // Não permite tiapgem do tipo any, ou seja a default que vem
+    "noImplicitAny": true, // Não permite tiapgem do tipo any, ou seja a default que vem
+    "removeComments": true, // Remove os comentários dos arquivos compilados
+    "strictNullChecks": true // Garante que o compilador irá gerar um erro se atribuirmos Null e Undefined
   },
   "include": ["app/**/*"] // ** = toda pasta filha, * = todo arquivo TS
 }
