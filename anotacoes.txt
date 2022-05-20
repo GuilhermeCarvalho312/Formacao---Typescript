@@ -83,4 +83,7 @@ Para tornar uma parâmetro opcional é só colocar um ? depois do nome
 Parâmetros opcionais têm de ser sempre os últimos
 
 AULA - 5: TSC e strictNullChecks:
-
+* Remoção de comentários do código compilado
+* Ativação do strictNullChecks
+* Como suprimir erros, quando fizer sentido, resultantes do strictNullChecks
+* Benefícios do strictNullChecks no controle do fluxo da sua aplicação
