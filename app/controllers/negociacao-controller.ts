@@ -13,21 +13,25 @@ export class NegociacaoController {
   private mensagemView = new mensagemView("#mensagemView");
 
   constructor() {
-    this.inputData = document.querySelector("#data");
-    this.inputQuantidade = document.querySelector("#quantidade");
-    this.inputValor = document.querySelector("#valor");
+    this.inputData = <HTMLInputElement>document.querySelector("#data"); //<Type> é a mesma coisa que colocar o as
+    this.inputQuantidade = document.querySelector("#quantidade") as HTMLInputElement; // 'as' diz para o compilador considerar o tipo que estamos determinando
+    this.inputValor = document.querySelector("#valor") as HTMLInputElement;
     this.negociacoesView.update(this.negociacoes);
   }
 
   public adiciona(): void {
-    const negociacao = this.criaNegociacao();
+    const negociacao = Negociacao.createFrom(
+      this.inputData.value,
+      this.inputQuantidade.value,
+      this.inputValor.value
+    );
     if (!this.isBussinessDay(negociacao.data)) {
       this.mensagemView.update("Apenas negociações em dias úteis são aceitas!");
       return;
     }
-      this.negociacoes.addNegotiation(negociacao);
-      this.limparFormulário();
-      this.updateView();
+    this.negociacoes.addNegotiation(negociacao);
+    this.limparFormulário();
+    this.updateView();
   }
 
   private isBussinessDay(data: Date):boolean {

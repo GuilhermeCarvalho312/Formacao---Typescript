@@ -1,7 +1,6 @@
 import { View } from "./view.js";
 export class NegociacoesView extends View {
     template(model) {
-        //template string permite quebrar a linha sem ficar concatenando
         return `
         <table class="table table-hover table-bordered">
             <thead>
@@ -15,7 +14,6 @@ export class NegociacoesView extends View {
                 ${model
             .lista()
             .map((negociacao) => {
-            //${} => Interpolação, processa comandos javascript
             return `
                         <tr>
                             <td>${this.dateFormater(negociacao.data)}</td>

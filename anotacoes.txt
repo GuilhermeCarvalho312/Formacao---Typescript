@@ -72,3 +72,15 @@ AULA - 3: Visibilidade de métodos e Enumeration:
 Constantes são escritos em letras maiúsculas
 No TypeScript, enums, ou tipos enumerados, são estruturas de dados de comprimento constante que contêm um conjunto de valores constantes. Cada um desses valores constantes é conhecido como membro do enum. Enums são úteis ao definir propriedades ou valores que podem ser apenas um certo número de valores possíveis.
 Importante estipular o valor da ENUM
+
+AULA - 4: Lapidando nosso código:
+* Revisão da lógica de conversão negociações
+* Método estáticos
+* Parâmetros opcionais
+
+Métodos estáticos podem ser acessados diretamente pela classe sem precisarmos de uma instância desta mesma classe.
+Para tornar uma parâmetro opcional é só colocar um ? depois do nome
+Parâmetros opcionais têm de ser sempre os últimos
+
+AULA - 5: TSC e strictNullChecks:
+
