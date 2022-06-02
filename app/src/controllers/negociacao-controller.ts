@@ -1,3 +1,4 @@
+import { domInjector } from "../decorators/dom-injector.js";
 import { inspect } from "../decorators/inspect.js";
 import { loginTimeOfExecution } from "../decorators/login-time-of-execution.js";
 import { DaysOfTheWeek } from "../enums/days-of-the-week.js";
@@ -7,22 +8,23 @@ import { mensagemView } from "../views/mensagem-view.js";
 import { NegociacoesView } from "../views/negociacoes-view.js";
 
 export class NegociacaoController {
+  @domInjector("#data")
   private inputData: HTMLInputElement;
+  @domInjector("#quantidade")
   private inputQuantidade: HTMLInputElement;
+  @domInjector("#valor")
   private inputValor: HTMLInputElement;
+
   private negociacoes: Negociacoes = new Negociacoes(); // Nesse caso é necessário inicializar a variável
   private negociacoesView = new NegociacoesView("#negociacoesView"); //passando a ID do HTML
   private mensagemView = new mensagemView("#mensagemView");
 
   constructor() {
-    this.inputData = <HTMLInputElement>document.querySelector("#data"); //<Type> é a mesma coisa que colocar o as
-    this.inputQuantidade = document.querySelector("#quantidade") as HTMLInputElement; // 'as' diz para o compilador considerar o tipo que estamos determinando
-    this.inputValor = document.querySelector("#valor") as HTMLInputElement;
     this.negociacoesView.update(this.negociacoes);
   }
 
-  @loginTimeOfExecution(true)
   @inspect
+  @loginTimeOfExecution()
   public adiciona(): void {
     const negociacao = Negociacao.createFrom(
       this.inputData.value,
@@ -34,12 +36,15 @@ export class NegociacaoController {
       return;
     }
     this.negociacoes.addNegotiation(negociacao);
-    this.limparFormulário();
+    this.limparFormulário(); 
     this.updateView();
   }
 
-  private isBussinessDay(data: Date):boolean {
-    return data.getDay() > DaysOfTheWeek.DOMINGO && data.getDay() < DaysOfTheWeek.SABADO;
+  private isBussinessDay(data: Date): boolean {
+    return (
+      data.getDay() > DaysOfTheWeek.DOMINGO &&
+      data.getDay() < DaysOfTheWeek.SABADO
+    );
   }
 
   private criaNegociacao(): Negociacao {

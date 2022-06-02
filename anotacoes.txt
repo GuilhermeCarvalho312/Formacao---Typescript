@@ -103,3 +103,10 @@ AULA - 2: Decorators e métodos:
 * Ordem de execução dos decorators
 * Simplicação no design de decorators
 * Portabilidade de funcionalidade antiga para decorators
+
+AULA - 3: Decorator de propriedade:
+* Como evitar código duplicado
+* Decorator de propriedade
+* Criação dinâmica de getters
+* O uso de Object.defineProperty
+* Cache de decorators
