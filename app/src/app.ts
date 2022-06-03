@@ -13,3 +13,12 @@ if (form) {
     "Não foi possível iniciar a aplicação, verifique se o forms existe"
   );
 }
+
+const importButton = document.querySelector("#btn-import");
+if (importButton) {
+  importButton.addEventListener("click", () => {
+    controller.importData();
+  });
+} else {
+  throw Error("Não foi possível encontrar o botão de importar");
+}

@@ -10,6 +10,7 @@ import { loginTimeOfExecution } from "../decorators/login-time-of-execution.js";
 import { DaysOfTheWeek } from "../enums/days-of-the-week.js";
 import { Negociacao } from "../models/negociacao.js";
 import { Negociacoes } from "../models/negociacoes.js";
+import { NegotiationsService } from "../services/negociacoes-service.js";
 import { mensagemView } from "../views/mensagem-view.js";
 import { NegociacoesView } from "../views/negociacoes-view.js";
 export class NegociacaoController {
@@ -17,6 +18,7 @@ export class NegociacaoController {
         this.negociacoes = new Negociacoes();
         this.negociacoesView = new NegociacoesView("#negociacoesView");
         this.mensagemView = new mensagemView("#mensagemView");
+        this.negotiationsService = new NegotiationsService();
         this.negociacoesView.update(this.negociacoes);
     }
     adiciona() {
@@ -28,6 +30,14 @@ export class NegociacaoController {
         this.negociacoes.addNegotiation(negociacao);
         this.limparFormulário();
         this.updateView();
+    }
+    importData() {
+        this.negotiationsService.getNegotiationsOfTheDay().then((todayNegotiations) => {
+            for (let negociacao of todayNegotiations) {
+                this.negociacoes.addNegotiation(negociacao);
+            }
+            this.negociacoesView.update(this.negociacoes);
+        });
     }
     isBussinessDay(data) {
         return (data.getDay() > DaysOfTheWeek.DOMINGO &&

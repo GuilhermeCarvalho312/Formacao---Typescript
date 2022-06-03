@@ -4,6 +4,7 @@ import { loginTimeOfExecution } from "../decorators/login-time-of-execution.js";
 import { DaysOfTheWeek } from "../enums/days-of-the-week.js";
 import { Negociacao } from "../models/negociacao.js";
 import { Negociacoes } from "../models/negociacoes.js";
+import { NegotiationsService } from "../services/negociacoes-service.js";
 import { mensagemView } from "../views/mensagem-view.js";
 import { NegociacoesView } from "../views/negociacoes-view.js";
 
@@ -18,6 +19,7 @@ export class NegociacaoController {
   private negociacoes: Negociacoes = new Negociacoes(); // Nesse caso é necessário inicializar a variável
   private negociacoesView = new NegociacoesView("#negociacoesView"); //passando a ID do HTML
   private mensagemView = new mensagemView("#mensagemView");
+  private negotiationsService = new NegotiationsService();
 
   constructor() {
     this.negociacoesView.update(this.negociacoes);
@@ -36,8 +38,17 @@ export class NegociacaoController {
       return;
     }
     this.negociacoes.addNegotiation(negociacao);
-    this.limparFormulário(); 
+    this.limparFormulário();
     this.updateView();
+  }
+
+  public importData(): void {
+    this.negotiationsService.getNegotiationsOfTheDay().then((todayNegotiations) => {
+      for (let negociacao of todayNegotiations) {
+        this.negociacoes.addNegotiation(negociacao);
+      }
+      this.negociacoesView.update(this.negociacoes);
+    });
   }
 
   private isBussinessDay(data: Date): boolean {
