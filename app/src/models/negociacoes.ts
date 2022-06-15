@@ -1,6 +1,7 @@
+import { Printable } from "../utils/printable.js";
 import { Negociacao } from "./negociacao.js";
 
-export class Negociacoes {
+export class Negociacoes implements Printable {
   private negociacoes: Negociacao[] = []; // [] é a mesma coisa que Array<>
 
   public addNegotiation(negociacao: Negociacao) {
@@ -12,5 +13,9 @@ export class Negociacoes {
     // ReadonlyArray<nomeArray> mesma coisa
     // Readonly(somente leitura) não permite modificar o array de retorno da função. readonly nomeArray[] é a mesma coisa que a frase anterior
     return this.negociacoes;
+  }
+
+  public toText(): string {
+    return JSON.stringify(this.negociacoes, null, 2);
   }
 }

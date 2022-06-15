@@ -11,6 +11,11 @@ export class Negociacao {
         const dataCopy = new Date(this._data.getTime());
         return dataCopy;
     }
+    toText() {
+        return `Data: ${this.data},
+    Quantidade: ${this.quantidade},
+    Valor: ${this.valor}`;
+    }
     static createFrom(dataString, quantidadeString, valorString) {
         const exp = /-/g;
         const date = new Date(dataString.replace(exp, ","));
